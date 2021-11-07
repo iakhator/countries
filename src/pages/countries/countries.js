@@ -21,6 +21,7 @@ const Countries = () => {
   const [countries, setCountries] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [selected, setSelected] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const {theme, themes} = useContext(ThemeContext)
   const navigate = useNavigate()
@@ -66,7 +67,6 @@ const Countries = () => {
   }
 
   const filterByRegion = ({value}) => {
-    console.log(value)
      setLoading(true)
       fetch(`https://restcountries.com/v2/region/${value}`)
       .then(response => response.json())
