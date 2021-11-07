@@ -9,39 +9,19 @@ import './countries.scss'
 import ThemeContext from '../../themes/theme-context';
 
 const options = [
-  { value: 'Africa', label: 'Africa' },
-  { value: 'America', label: 'America' },
-  { value: 'Asia', label: 'Asia' },
-  { value: 'Europe', label: 'Europe' },
-  { value: 'Oceania', label: 'Oceania' },
+  { value: 'africa', label: 'Africa' },
+  { value: 'america', label: 'America' },
+  { value: 'asia', label: 'Asia' },
+  { value: 'europe', label: 'Europe' },
+  { value: 'oceania', label: 'Oceania' },
 ]
 
-const customStyles = {
-  option: (provided, state) => ({
-    ...provided,
-    borderBottom: '1px dotted pink',
-    // color: state.isSelected ? 'red' : 'blue',
-    padding: 20,
-    border: "1px solid red",
-  }),
-  control: () => ({
-    // none of react-select's styles are passed to <Control />
-    display: "flex",
-    border: "1px solid black",
-    width: 200
-  })
-  // // singleValue: (provided, state) => {
-  // //   const opacity = state.isDisabled ? 0.5 : 1;
-  // //   const transition = 'opacity 300ms';
 
-  // //   return { ...provided, opacity, transition };
-  // // }
-}
-
-const Countries = (props) => {
+const Countries = () => {
   const [countries, setCountries] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [selected, setSelected] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const {theme, themes} = useContext(ThemeContext)
   const navigate = useNavigate()
@@ -86,6 +66,20 @@ const Countries = (props) => {
     navigate(`/country/${name}`)
   }
 
+  const filterByRegion = ({value}) => {
+    console.log(value)
+     setLoading(true)
+      fetch(`https://restcountries.com/v2/continent/${value}`)
+      .then(response => response.json())
+      .then(data => {
+        setCountries(data)
+        setLoading(false)
+      }).catch(err => {
+        setError(true);
+        setLoading(false)
+      })
+  }
+
   return (
     <Row className="countries">
       <Col md={12} className="countries-search-filter">
@@ -97,7 +91,7 @@ const Countries = (props) => {
             </div>
           </Col>
           <Col sm={12} md={6} className="countries-filter justify-content-end">
-            <Select options={options} placeholder="Filter By Region" styles={customStyles} control={{backgroundColor: 'red'}}/>
+            <Select options={options} placeholder="Filter By Region" value={selected} onChange={filterByRegion}/>
           </Col>
         </Row>
       </Col>
