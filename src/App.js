@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import './App.scss';
+import {themes} from './themes/theme';
+import ThemeContext from './themes/theme-context';
+import NavBar from './components/navbar/navbar';
+import Countries from './pages/countries/countries';
+import Country from './pages/country/country';
 
 function App() {
+  const [theme, setTheme] = useState('light')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={theme === 'light' ? themes.light : themes.dark}>
+      <ThemeContext.Provider value={{theme, setTheme, themes}}>
+          <NavBar />
+          <Container>
+            <Routes>
+                <Route exact path="/"  element={<Countries />}/> 
+                <Route exact path="/country/:id" element={<Country />} />
+            </Routes>
+          </Container>
+    </ThemeContext.Provider>
     </div>
   );
 }
