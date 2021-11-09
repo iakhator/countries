@@ -21,7 +21,6 @@ const Countries = () => {
   const [countries, setCountries] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [selected, setSelected] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const {theme, themes} = useContext(ThemeContext)
   const navigate = useNavigate()
@@ -41,25 +40,33 @@ const Countries = () => {
   }, [])
 
   const getBySearchCountry = (value) => {
-    if(value && value.length >= 2) {
-      setTimeout(() => {
-        setLoading(true)
-        fetch(`https://restcountries.com/v2/name/${value}`)
-          .then(response => response.json())
-          .then(data => {
-            setCountries(data)
-            setLoading(false)
-          }).catch(err => {
-          setError(true);
-          setLoading(false)
-        })
-      }, 2000);
-    }
+    setLoading(true)
+    fetch(`https://restcountries.com/v2/name/${value}`)
+      .then(response => response.json())
+      .then(data => {
+        setCountries(data)
+        setLoading(false)
+      }).catch(err => {
+      setError(true);
+      setLoading(false)
+    })
   }
 
-  const handleChange = (e) => {
-    setSearchQuery(e.target.value)
-    getBySearchCountry(e.target.value)
+  useEffect(() => {
+    let timer = null;
+    timer = setTimeout(() => {
+      if(searchQuery) {
+        getBySearchCountry(searchQuery)
+      }
+      return;
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [searchQuery])
+  
+
+  const handleChange = ({target: {value}}) => {
+    setSearchQuery(value)
   }
 
   const getCountry = (name) => {
@@ -90,7 +97,7 @@ const Countries = () => {
             </div>
           </Col>
           <Col sm={12} md={6} className="countries-filter justify-content-end">
-            <Select options={options} placeholder="Filter By Region" value={selected} onChange={filterByRegion}/>
+            <Select options={options} placeholder="Filter By Region" onChange={filterByRegion}/>
           </Col>
         </Row>
       </Col>
