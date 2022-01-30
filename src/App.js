@@ -24,7 +24,7 @@ function App() {
                 <Route exact path="/country/:id" element={<Country />} />
             </Routes>
           </Container>
-    </ThemeContext.Provider>
+      </ThemeContext.Provider>
     </div>
   );
 }

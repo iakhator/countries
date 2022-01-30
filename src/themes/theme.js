@@ -1,12 +1,16 @@
+const $white = "#ffffff"
+const $offBlack = "#111517"
+const $darkBackground = "#2B3844"
+
 export const themes = {
   light: {
-    color: "#111517",
+    color: $offBlack,
     background: "#F2F2F2",
     minHeight: "100vh",
     height: "auto"
   },
   lightSearch: {
-    background: "#ffffff",
+    background: $white,
     boxShadow: "0px 2px 9px rgba(0, 0, 0, 0.0532439)",
     color: "#848484"
   },
@@ -15,21 +19,21 @@ export const themes = {
     background: "inherit"
   },
   lightHeader: {
-    background: "#ffffff",
-    color: "#111517",
+    background: $white,
+    color: $offBlack,
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.0562443)",
   },
   lightBrand: {
-    color: "#111517"
+    color: $offBlack
   },
   lightCard: {
-    background: "#FFFFFF",
+    background: $white,
     boxShadow: "0px 0px 7px 2px rgba(0, 0, 0, 0.0294384)"
   },
   lightButton: {
     boxShadow: "0px 0px 7px 2px rgba(0, 0, 0, 0.0294384)",
-    background: "#Ffffff",
-    color: "#111517",
+    background: $white,
+    color: $offBlack,
   },
   lightButtonBorder: {
     boxShadow: "0px 0px 4px 1px rgba(0, 0, 0, 0.104931)",
@@ -40,38 +44,38 @@ export const themes = {
     borderRadius: "2px"
   },
   dark: {
-    color: "#ffffff",
+    color: $white,
     background: "#202C36",
     minHeight: "100vh",
     height: "auto"
   },
   darkHeader: {
-    background: "#2B3844",
+    background: $darkBackground,
   },
   darkSearch: {
-    background: "#2B3844",
+    background: $darkBackground,
     boxShadow: "0px 2px 9px rgba(0, 0, 0, 0.0532439)"
   },
   darkInput: {
     background: "inherit",
-    color: "#ffffff"
+    color: $white
   },
   darkBrand: {
-    color: "#ffffff"
+    color: $white
   },
   darkCard: {
-    background: "#2B3844",
+    background: $darkBackground,
     boxShadow: "0px 0px 7px 2px rgba(0, 0, 0, 0.0294384)"
   },
    darkButton: {
     boxShadow: "0px 0px 7px 2px rgba(0, 0, 0, 0.0294384)",
-    background: "#2B3844",
-    color: "#ffffff"
+    background: $darkBackground,
+    color: $white
   },
    darkButtonBorder: {
     boxShadow: "0px 0px 4px 1px rgba(17, 21, 23, 0.252406)",
-    background: "#2B3844",
-    color: "#ffffff",
+    background: $darkBackground,
+    color: $white,
     fontSize: "12px",
     textAlign: "center",
     width: "96px",

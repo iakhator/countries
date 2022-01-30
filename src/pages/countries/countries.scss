@@ -9,12 +9,19 @@
     align-items: center;
     justify-content: center;
     padding: 0 30px;
-    width: 480px;
     height: 56px;
     border-radius: 5px;
     gap: 5px;
     font-size: 14px;
     line-height: 20px;
+
+    @media screen and (max-width: 768px ) {
+      margin-bottom: 10px;
+    }
+
+    @media screen and (min-width: 768px ) {
+      width: 480px;
+    }
 
     input[type=text] {
       border: none;
