@@ -1,4 +1,4 @@
-# Marley Recipe
+# Countries
 
 A simple countries project inspired by frontend mentor using rest-countries-api
 
