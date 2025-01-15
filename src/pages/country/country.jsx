@@ -5,7 +5,7 @@ import { faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 import {Spinner} from 'react-bootstrap'
 import ThemeContext from '../../themes/theme-context';
 
-import './country.scss'
+// import './country.scss'
 const Country = () => {
   const [country, setCountry] = useState({})
   const [loading, setLoading] = useState(false)

@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Select from 'react-select'
 
-import './countries.scss'
 import ThemeContext from '../../themes/theme-context';
 
 const options = [
