@@ -106,10 +106,10 @@ const Countries = () => {
         </Row>
       </Col>
       <Col md={12}>
-        <Row>
+        <Row className='flex'>
           {loading && <Spinner animation="border" />}
           {!loading && error && <p className="error">OOps There was an error fetching countries..</p>}
-          {!loading && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx}>
+          {!loading && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx} md={3}>
             <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name} />
