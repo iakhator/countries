@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Select from 'react-select'
 
-import ThemeContext from '../../themes/theme-context';
+import ThemeContext from '../themes/theme-context';
 
 const options = [
   { value: 'africa', label: 'Africa' },

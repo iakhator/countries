@@ -7,5 +7,10 @@ export default defineConfig(() => {
       outDir: 'build',
     },
     plugins: [react()],
+    resolve: {
+      alias: {
+        '~bootstrap': path.resolve(__dirname, 'bootstrap/scss/bootstrap'),
+      }
+    },
   };
 });

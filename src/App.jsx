@@ -4,12 +4,11 @@ import {
   Route,
 } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
-// import './App.scss';
 import {themes} from './themes/theme';
 import ThemeContext from './themes/theme-context';
 import NavBar from './components/navbar/navbar';
-import Countries from './pages/countries/countries';
-import Country from './pages/country/country';
+import Countries from './pages/countries';
+import Country from './pages/country';
 
 function App() {
   const [theme, setTheme] = useState('light')

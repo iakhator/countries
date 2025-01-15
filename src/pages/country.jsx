@@ -3,7 +3,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 import {Spinner} from 'react-bootstrap'
-import ThemeContext from '../../themes/theme-context';
+import ThemeContext from '../themes/theme-context';
 
 // import './country.scss'
 const Country = () => {
