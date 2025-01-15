@@ -1,11 +1,11 @@
-import {useContext } from 'react';
+import React, {useContext } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import ThemeContext from '../../themes/theme-context';
-import './navbar.scss';
+// import './navbar.scss';
 
 const NavBar = () => {
   const {theme, setTheme, themes} = useContext(ThemeContext);
