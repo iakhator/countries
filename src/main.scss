@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
-
-@import './scss/_index.scss';
-
+@use './scss/_index.scss';
 
 body {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

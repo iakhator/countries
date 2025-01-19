@@ -100,8 +100,8 @@ const Countries = () => {
               <input type="text"  placeholder="Search for a country…" style={theme === 'light' ? themes.lightInput : themes.darkInput} value={searchQuery} onChange={handleChange}/>
             </div>
           </Col>
-          <Col sm={12} md={6} className="countries-filter justify-content-end">
-            <Select options={options} placeholder="Filter By Region" onChange={filterByRegion}/>
+          <Col sm={12} md={6} className="countries-filter justify-content-end" >
+            <Select options={options} placeholder="Filter By Region" onChange={filterByRegion} style={theme === 'light' ? themes.lightInput : themes.darkInput} className='darkMode'/>
           </Col>
         </Row>
       </Col>
@@ -109,7 +109,7 @@ const Countries = () => {
         <Row className='flex'>
           {loading && <Spinner animation="border" />}
           {!loading && error && <p className="error">OOps There was an error fetching countries..</p>}
-          {!loading && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx} md={3}>
+          {!loading && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx}>
             <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name} />
