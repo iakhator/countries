@@ -83,16 +83,7 @@ const Countries = () => {
   }
 
   const filterByRegion = ({value}) => {
-    //  setLoading(true)
-    //   fetch(`https://restcountries.com/v2/region/${value}`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setCountries(data)
-    //     setLoading(false)
-    //   }).catch(err => {
-    //     setError(true);
-    //     setLoading(false)
-    //   })
+    setEndpoint(`/region/${value}`);
   }
 
   return (
@@ -114,13 +105,13 @@ const Countries = () => {
         <Row className='flex'>
           {loading && <Spinner animation="border" />}
           {error && <p className="error">OOps There was an error fetching countries..</p>}
-          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx}>
+          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" md={3} key={idx}>
             <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name)}>
               <div className="country-card-img">
-                <img src={country.flags.png} alt={country.name} />
+                <img src={country.flags.png} alt={country.name.common} />
               </div>
               <div className="country-card-details">
-                <h6>{country.name}</h6>
+                <h6>{country.name.official}</h6>
                 <p><span>Population:</span> {country.population}</p>
                 <p><span>Region:</span> {country.region || 'N/A'}</p>
                 <p><span>Capital:</span> {country.capital || 'N/A'}</p>

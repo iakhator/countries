@@ -1,7 +1,7 @@
 import {useState, useEffect , useRef} from 'react';
 
-const BASE_URL = 'https://restcountries.com/v2';
-// const BASE_URL = 'https://restcountries.com/v3.1';
+// const BASE_URL = 'https://restcountries.com/v2';
+const BASE_URL = 'https://restcountries.com/v3.1';
 
 const useFetch = (endpoint, options = {})  => {
   const [data, setData] = useState([]);
@@ -13,8 +13,6 @@ const useFetch = (endpoint, options = {})  => {
   useEffect(() => {
     // To avoid setting state on unmounted components
     let isMounted = true;
-
-    if (!endpoint) return; // Skip fetching if no endpoint is provided
 
     const fetchData = async () => {
       setLoading(true);
