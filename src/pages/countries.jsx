@@ -4,6 +4,7 @@ import {Col, Row, Spinner} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Select from 'react-select'
+import useFetch from '../hooks/useFetch';
 
 import ThemeContext from '../themes/theme-context';
 
@@ -16,57 +17,61 @@ const options = [
 ]
 
 const Countries = () => {
-  const [countries, setCountries] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  // const [countries, setCountries] = useState([])
+  const [endpoint, setEndpoint] = useState('/all');
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const {theme, themes} = useContext(ThemeContext)
   const navigate = useNavigate()
 
-  
-  useEffect(() => {
-    getCountries()
-  }, [])
+  const {data: countries, error, loading } = useFetch(endpoint)
 
-  const getCountries = () => {
-     setLoading(true)
-     fetch('https://restcountries.com/v2/all')
-    .then(response => response.json())
-    .then(data => {
-      setCountries(data)
-      setLoading(false)
-    }).catch(err => {
-      setError(true);
-      setLoading(false)
-    })
-  }
+  // console.log(countriesX, 'countries', loadingX, 'loading', errorX, 'error')
+  
+  // useEffect(() => {
+  //   setEndpoint('/all')
+  // }, [])
+
+  // const getCountries = () => {
+  //    setLoading(true)
+  //    fetch('https://restcountries.com/v2/all')
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     setCountries(data)
+  //     setLoading(false)
+  //   }).catch(err => {
+  //     setError(true);
+  //     setLoading(false)
+  //   })
+  // }
 
   const getBySearchCountry = (value) => {
-    setLoading(true)
-    fetch(`https://restcountries.com/v2/name/${value}`)
-      .then(response => response.json())
-      .then(data => {
-        setCountries(data)
-        setLoading(false)
-      }).catch(err => {
-      setError(true);
-      setLoading(false)
-    })
+    // setLoading(true)
+    // fetch(`https://restcountries.com/v2/name/${value}`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setCountries(data)
+    //     setLoading(false)
+    //   }).catch(err => {
+    //   setError(true);
+    //   setLoading(false)
+    // })
   }
 
-  useEffect(() => {
-    let timer = null;
-    timer = setTimeout(() => {
-      if(searchQuery) {
-        getBySearchCountry(searchQuery)
+  // useEffect(() => {
+  //   let timer = null;
+  //   timer = setTimeout(() => {
+  //     if(searchQuery) {
+  //       getBySearchCountry(searchQuery)
 
-        return;
-      }
-      getCountries();
-    }, 3000)
+  //       return;
+  //     }
+  //     getCountries();
+  //   }, 3000)
 
-    return () => clearTimeout(timer)
-  }, [searchQuery])
+  //   return () => clearTimeout(timer)
+  // }, [searchQuery])
   
 
   const handleChange = ({target: {value}}) => {
@@ -78,16 +83,16 @@ const Countries = () => {
   }
 
   const filterByRegion = ({value}) => {
-     setLoading(true)
-      fetch(`https://restcountries.com/v2/region/${value}`)
-      .then(response => response.json())
-      .then(data => {
-        setCountries(data)
-        setLoading(false)
-      }).catch(err => {
-        setError(true);
-        setLoading(false)
-      })
+    //  setLoading(true)
+    //   fetch(`https://restcountries.com/v2/region/${value}`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setCountries(data)
+    //     setLoading(false)
+    //   }).catch(err => {
+    //     setError(true);
+    //     setLoading(false)
+    //   })
   }
 
   return (
@@ -108,8 +113,8 @@ const Countries = () => {
       <Col md={12}>
         <Row className='flex'>
           {loading && <Spinner animation="border" />}
-          {!loading && error && <p className="error">OOps There was an error fetching countries..</p>}
-          {!loading && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx}>
+          {error && <p className="error">OOps There was an error fetching countries..</p>}
+          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" key={idx}>
             <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name} />
