@@ -17,34 +17,13 @@ const options = [
 ]
 
 const Countries = () => {
-  // const [countries, setCountries] = useState([])
   const [endpoint, setEndpoint] = useState('/all');
-  // const [loading, setLoading] = useState(false)
-  // const [error, setError] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const {theme, themes} = useContext(ThemeContext)
   const navigate = useNavigate()
 
   const {data: countries, error, loading } = useFetch(endpoint)
 
-  // console.log(countriesX, 'countries', loadingX, 'loading', errorX, 'error')
-  
-  // useEffect(() => {
-  //   setEndpoint('/all')
-  // }, [])
-
-  // const getCountries = () => {
-  //    setLoading(true)
-  //    fetch('https://restcountries.com/v2/all')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     setCountries(data)
-  //     setLoading(false)
-  //   }).catch(err => {
-  //     setError(true);
-  //     setLoading(false)
-  //   })
-  // }
 
   const getBySearchCountry = (value) => {
     // setLoading(true)
@@ -105,8 +84,8 @@ const Countries = () => {
         <Row className='flex'>
           {loading && <Spinner animation="border" />}
           {error && <p className="error">OOps There was an error fetching countries..</p>}
-          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" md={3} key={idx}>
-            <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name)}>
+          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" sm={6} md={4} lg={3} key={idx}>
+            <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name.common)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name.common} />
               </div>

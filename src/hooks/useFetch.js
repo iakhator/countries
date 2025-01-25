@@ -4,7 +4,7 @@ import {useState, useEffect , useRef} from 'react';
 const BASE_URL = 'https://restcountries.com/v3.1';
 
 const useFetch = (endpoint, options = {})  => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,6 +16,7 @@ const useFetch = (endpoint, options = {})  => {
 
     const fetchData = async () => {
       setLoading(true);
+      console.log(`${BASE_URL}${endpoint}`, 'endpoint here')
       try {
         const response = await fetch(`${BASE_URL}${endpoint}`, options);
 
