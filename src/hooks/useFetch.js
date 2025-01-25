@@ -16,7 +16,6 @@ const useFetch = (endpoint, options = {})  => {
 
     const fetchData = async () => {
       setLoading(true);
-      console.log(`${BASE_URL}${endpoint}`, 'endpoint here')
       try {
         const response = await fetch(`${BASE_URL}${endpoint}`, options);
 
@@ -32,6 +31,7 @@ const useFetch = (endpoint, options = {})  => {
       } catch (err) {
         if (isMounted) {
           setError(err);
+          setData(null)
         }
       } finally {
         if (isMounted) {

@@ -7,12 +7,20 @@ export const themes = {
     color: $offBlack,
     background: "#F2F2F2",
     minHeight: "100vh",
-    height: "auto"
+    height: "auto",
+    selectHeight: '56px',
+    selectWidth: '500px',
   },
   lightSearch: {
     background: $white,
     boxShadow: "0px 2px 9px rgba(0, 0, 0, 0.0532439)",
     color: "#848484"
+  },
+  lightSelect: {
+    color: $offBlack,
+    background: $white,
+    height: '56px',
+    width: '200px',
   },
   lightInput: {
     color: "#848484",

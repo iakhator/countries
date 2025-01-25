@@ -22,43 +22,34 @@ const Countries = () => {
   const {theme, themes} = useContext(ThemeContext)
   const navigate = useNavigate()
 
+  const customSelectStyles = {
+    control: (base, state) => ({
+      ...base,
+      backgroundColor: theme === 'light' ? themes.lightSelect : themes.darkInput,
+      color: theme === 'light' ? '#000000' : '#ffffff',
+      width: theme === 'light' ? themes.selectWidth : ''
+    })
+  }
+
   const {data: countries, error, loading } = useFetch(endpoint)
 
 
-  const getBySearchCountry = (value) => {
-    // setLoading(true)
-    // fetch(`https://restcountries.com/v2/name/${value}`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setCountries(data)
-    //     setLoading(false)
-    //   }).catch(err => {
-    //   setError(true);
-    //   setLoading(false)
-    // })
-  }
+  useEffect(() => {
+    let debounce = null;
+    debounce = setTimeout(() => {
+      if(searchQuery.trim() !== '') {
+        setEndpoint(`/name/${searchQuery}`)
+      } else {
+        setEndpoint('/all')
+      }
+    }, 2000)
 
-  // useEffect(() => {
-  //   let timer = null;
-  //   timer = setTimeout(() => {
-  //     if(searchQuery) {
-  //       getBySearchCountry(searchQuery)
-
-  //       return;
-  //     }
-  //     getCountries();
-  //   }, 3000)
-
-  //   return () => clearTimeout(timer)
-  // }, [searchQuery])
+    return () => clearTimeout(debounce)
+  }, [searchQuery])
   
 
   const handleChange = ({target: {value}}) => {
     setSearchQuery(value)
-  }
-
-  const getCountry = (name) => {
-    navigate(`/country/${name}`)
   }
 
   const filterByRegion = ({value}) => {
@@ -76,7 +67,8 @@ const Countries = () => {
             </div>
           </Col>
           <Col sm={12} md={6} className="countries-filter justify-content-end" >
-            <Select options={options} placeholder="Filter By Region" onChange={filterByRegion} style={theme === 'light' ? themes.lightInput : themes.darkInput} className='darkMode'/>
+            {/* <Select options={options} placeholder="Filter By Region" onChange={filterByRegion} style={theme === 'light' ? theme.lightInput : theme.darkInput} className='darkMode'/> */}
+            <Select options={options} placeholder="Filter By Region" onChange={filterByRegion} styles={customSelectStyles}/>
           </Col>
         </Row>
       </Col>
@@ -85,7 +77,7 @@ const Countries = () => {
           {loading && <Spinner animation="border" />}
           {error && <p className="error">OOps There was an error fetching countries..</p>}
           {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" sm={6} md={4} lg={3} key={idx}>
-            <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => getCountry(country.name.common)}>
+            <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => navigate(`/country/${country.name.common}`)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name.common} />
               </div>
