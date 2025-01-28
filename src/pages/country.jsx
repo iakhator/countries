@@ -41,7 +41,7 @@ const Country = () => {
   return (
     <div className="country">
       {(loading) && <Spinner animation="border" />}
-      <button onClick={navigateBack} style={theme === 'light' ? themes.lightButton : themes.darkButton}>
+      <button onClick={navigateBack} style={themes[theme].button}>
         <FontAwesomeIcon icon={faArrowLeft} /> Back
       </button>
 
@@ -69,7 +69,7 @@ const Country = () => {
             </div>
             <div className="country-border">
               <p className="pborder">Border Countries:</p>
-              <p className="pborder-countries">{country.borders ? country.borders.map((border, idx) => (<button key={idx} style={theme === 'light' ? themes.lightButtonBorder : themes.darkButtonBorder} onClick={() => handleBorderClick(border)}>{border}</button>)) : 'N/A'}</p>
+              <p className="pborder-countries">{country.borders ? country.borders.map((border, idx) => (<button key={idx} style={themes[theme].borderButton}>{border}</button>)) : 'N/A'}</p>
             </div>
           </div>
       </div>}

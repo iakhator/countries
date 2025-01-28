@@ -14,17 +14,17 @@ function App() {
   const [theme, setTheme] = useState('light')
 
   return (
-    <div style={theme === 'light' ? themes.light : themes.dark}>
-      <ThemeContext.Provider value={{theme, setTheme, themes}}>
-          <NavBar />
-          <Container>
-            <Routes>
-                <Route exact path="/"  element={<Countries />}/> 
-                <Route exact path="/country/:id" element={<Country />} />
-            </Routes>
-          </Container>
-      </ThemeContext.Provider>
-    </div>
+    <ThemeContext.Provider value={{theme, setTheme, themes}}>
+      <div style={themes[theme]}>
+            <NavBar />
+            <Container>
+              <Routes>
+                  <Route exact path="/"  element={<Countries />}/> 
+                  <Route exact path="/country/:id" element={<Country />} />
+              </Routes>
+            </Container>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

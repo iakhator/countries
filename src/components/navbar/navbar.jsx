@@ -15,11 +15,11 @@ const NavBar = () => {
   }
 
   return (
-    <Navbar expand="lg" style={theme === 'light' ? themes.lightHeader : themes.darkHeader}>
+    <Navbar expand="lg" style={themes[theme].header}>
       <Container>
-        <Navbar.Brand style={theme === 'light' ? themes.lightBrand : themes.darkBrand}>Where in the world?</Navbar.Brand>
+        <Navbar.Brand style={themes[theme].brand}>Where in the world?</Navbar.Brand>
           <Nav className="ml-auto justify-content-end">
-          <Nav.Link style={theme === 'light' ? themes.lightBrand : themes.darkBrand} onClick={handleChangeMode}>{theme === 'light' ? <><FontAwesomeIcon icon={faMoon}/> Dark Mode</> : <><FontAwesomeIcon icon={faSun}/> Light Mode</>}</Nav.Link>
+          <Nav.Link style={themes[theme].brand} onClick={handleChangeMode}>{theme === 'light' ? <><FontAwesomeIcon icon={faMoon}/> Dark Mode</> : <><FontAwesomeIcon icon={faSun}/> Light Mode</>}</Nav.Link>
           </Nav>
       </Container>
     </Navbar>

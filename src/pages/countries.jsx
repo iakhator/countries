@@ -25,10 +25,20 @@ const Countries = () => {
   const customSelectStyles = {
     control: (base, state) => ({
       ...base,
-      backgroundColor: theme === 'light' ? themes.lightSelect : themes.darkInput,
-      color: theme === 'light' ? '#000000' : '#ffffff',
-      width: theme === 'light' ? themes.selectWidth : ''
-    })
+      ...themes[theme].select,
+      height: '56px',
+      outline: state.isFocused ? 'red' : 'blue',
+      '&:focus': {
+        borderColor: 'red'
+      }
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
+    menu: (base) => ({
+      ...base,
+      ...themes[theme].select
+    }),
   }
 
   const {data: countries, error, loading } = useFetch(endpoint)
@@ -61,9 +71,9 @@ const Countries = () => {
       <Col md={12} className="countries-search-filter">
         <Row className="flex">
           <Col sm={12} md={6}>
-            <div className="countries__search-wrapper" style={theme === 'light' ? themes.lightSearch : themes.darkSearch}>
+            <div className="countries__search-wrapper" style={themes[theme].search}>
               <FontAwesomeIcon icon={faSearch}/>
-              <input type="text"  placeholder="Search for a country…" style={theme === 'light' ? themes.lightInput : themes.darkInput} value={searchQuery} onChange={handleChange}/>
+              <input type="text"  placeholder="Search for a country…" style={themes[theme].input} value={searchQuery} onChange={handleChange}/>
             </div>
           </Col>
           <Col sm={12} md={6} className="countries-filter justify-content-end" >
@@ -73,11 +83,11 @@ const Countries = () => {
         </Row>
       </Col>
       <Col md={12}>
-        <Row className='flex'>
+        <Row className='g-5 align-items-stretch'>
           {loading && <Spinner animation="border" />}
           {error && <p className="error">OOps There was an error fetching countries..</p>}
-          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-4" sm={6} md={4} lg={3} key={idx}>
-            <div className="country-card" style={theme === 'light' ? themes.lightCard: themes.darkCard} onClick={() => navigate(`/country/${country.name.common}`)}>
+          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-3" sm={6} md={4} lg={3} key={idx}>
+            <div className="country-card w-100 h-100" style={themes[theme].card} onClick={() => navigate(`/country/${country.name.common}`)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name.common} />
               </div>

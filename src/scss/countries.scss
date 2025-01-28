@@ -59,11 +59,11 @@
 // }
 
 .country-card {
-  min-width: 264px;
+  max-width: 264px;
   height: 336px;
   border-radius: 5px;
-  transition: transform 1ms ease-in;
   cursor: pointer;
+  transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 
   &-img {
     width: 100%;
@@ -94,6 +94,7 @@
 
   &:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 } 
 
