@@ -86,7 +86,7 @@ const Countries = () => {
         <Row className='g-5 align-items-stretch'>
           {loading && <Spinner animation="border" />}
           {error && <p className="error">OOps There was an error fetching countries..</p>}
-          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="mb-3" sm={6} md={5} lg={4} xl={3} key={idx}>
+          {countries && countries.length > 0 && countries.map(((country, idx)=> <Col className="" sm={6} md={5} lg={4} xl={3} key={idx}>
             <div className="country-card" style={themes[theme].card} onClick={() => navigate(`/country/${country.name.common}`)}>
               <div className="country-card-img">
                 <img src={country.flags.png} alt={country.name.common} />

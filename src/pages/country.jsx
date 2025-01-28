@@ -22,7 +22,6 @@ const Country = () => {
   const country = countryData && countryData.length > 0 ? countryData[0] : null;
 
   useEffect(() => {
-      console.log('code', borderCountryCode, borderCountry);
       if (borderCountry && borderCountry[0].name) { 
         navigate(`/country/${borderCountry[0].name.common}`);
       }
@@ -69,7 +68,7 @@ const Country = () => {
             </div>
             <div className="country-border">
               <p className="pborder">Border Countries:</p>
-              <p className="pborder-countries">{country.borders ? country.borders.map((border, idx) => (<button key={idx} style={themes[theme].borderButton}>{border}</button>)) : 'N/A'}</p>
+              <p className="pborder-countries">{country.borders ? country.borders.map((border, idx) => (<button onClick={() => handleBorderClick(border)} key={idx} style={themes[theme].borderButton}>{border}</button>)) : 'N/A'}</p>
             </div>
           </div>
       </div>}
