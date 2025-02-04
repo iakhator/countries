@@ -28,8 +28,9 @@ const Countries = () => {
       ...themes[theme].select,
       height: '56px',
       outline: state.isFocused ? 'red' : 'blue',
-      '&:focus': {
-        borderColor: 'red'
+      '&:focus, &:active': {
+        border: 'red',
+        outline: 'green'
       }
     }),
     indicatorSeparator: () => ({
