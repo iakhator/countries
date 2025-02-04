@@ -22,7 +22,6 @@ const Country = () => {
   const country = countryData && countryData.length > 0 ? countryData[0] : null;
 
   useEffect(() => {
-    console.log(borderCountry, 'borderCountry',  borderCountryCode, 'borderCountryCode')
       if (borderCountry && borderCountry[0].name) { 
         navigate(`/country/${borderCountry[0].name.common}`);
       }
