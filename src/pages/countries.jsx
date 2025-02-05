@@ -72,7 +72,7 @@ const Countries = () => {
   }
 
   return (
-    <Row className="countries">
+    <Row className="countries pb-5">
       <Col md={12} className="countries-search-filter">
         <Row className="flex">
           <Col xs={12} sm={12} md={6}>
