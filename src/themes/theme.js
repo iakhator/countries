@@ -1,11 +1,13 @@
 const $white = "#ffffff"
 const $offBlack = "#111517"
+const $gray = "#F2F2F2"
+const $bluish_gray = "#202C36"
 const $darkBackground = "#2B3844"
 
 export const themes = {
   light: {
     color: $offBlack,
-    background: "#F2F2F2",
+    background: $gray,
     minHeight: "100vh",
     height: "auto",
     selectHeight: '56px',
@@ -48,12 +50,30 @@ export const themes = {
       backgroundColor: $white,
       color: $offBlack,
       width: '200px',
+      height: '56px',
+      border: 'none',
+      boxShadow: "0px 2px 9px rgba(0, 0, 0, 0.0532439)",
+      menu: {
+        backgroundColor: $white,
+        color: $offBlack,
+      },
+      singleValue:{
+        color: $offBlack,
+      },
+      options: (state) => ({
+        background: state.isSelected ? $gray : 'inherit',
+        color: state.isSelected ? $offBlack : 'inherit',
+        '&:hover': { 
+          background: $gray,
+          color: $offBlack
+        }
+      })
     }
   },
 
   dark: {
     color: $white,
-    backgroundColor: "#202C36",
+    backgroundColor: $bluish_gray,
     minHeight: "100vh",
     height: "auto",
     header: {
@@ -93,7 +113,22 @@ export const themes = {
       color: $white,
       backgroundColor: $darkBackground,
       width: '200px',
-      border: 'none'
+      height: '56px',
+      border: 'none',
+      boxShadow: "0px 2px 9px rgba(0, 0, 0, 0.0532439)",
+      menu: {
+        backgroundColor: $darkBackground,
+        color: $white,
+      },
+      singleValue:{
+        color: $white,
+      },
+      options:(state) => ({
+        background: state.isSelected ? $bluish_gray : 'inherit',
+        '&:hover': { 
+          background: $bluish_gray,
+        }
+      })
     }
   },
   // lightSearch: {

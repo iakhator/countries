@@ -3,6 +3,14 @@
     margin: 40px 0;
   }
 
+  &__container {
+    @media screen and (max-width: 520px) {
+      width: 285px;
+      margin: 0 auto;
+      padding: 0;
+    }
+  }
+
   &__search-wrapper {
     display: grid;
     grid-template-columns: 6% 91%;
@@ -51,13 +59,6 @@
   }
 }
 
-// @media (min-width: 992px){
-//   .col-lg-3 {
-//     flex: 0 0 auto;
-//     width: 33%;
-//   }
-// }
-
 .country-card {
   width: 285px;
   height: 336px;
@@ -98,11 +99,11 @@
   }
 } 
 
-.css-1s2u09g-control, .css-1pahdxg-control {
-  width: 200px;
-  height: 56px;
-}
+// .css-1s2u09g-control, .css-1pahdxg-control {
+//   width: 200px;
+//   height: 56px;
+// }
 
-.css-1s2u09g-control:hover, .css-1pahdxg-control:hover {
-  border-color: none !important;
-}
+// .css-1s2u09g-control:hover, .css-1pahdxg-control:hover {
+//   border-color: none !important;
+// }

@@ -26,19 +26,23 @@ const Countries = () => {
     control: (base, state) => ({
       ...base,
       ...themes[theme].select,
-      height: '56px',
+      border: 'none',
       outline: state.isFocused ? 'red' : 'blue',
-      '&:focus, &:active': {
-        border: 'red',
-        outline: 'green'
-      }
     }),
     indicatorSeparator: () => ({
       display: 'none',
     }),
     menu: (base) => ({
       ...base,
-      ...themes[theme].select
+      ...themes[theme].select.menu
+    }),
+    option: (base, state) => ({
+      ...base,
+      ...themes[theme].select.options(state),
+    }),
+    singleValue: (base) => ({
+      ...base,
+      ...themes[theme].select.singleValue
     }),
   }
 
@@ -71,19 +75,18 @@ const Countries = () => {
     <Row className="countries">
       <Col md={12} className="countries-search-filter">
         <Row className="flex">
-          <Col sm={12} md={6}>
+          <Col xs={12} sm={12} md={6}>
             <div className="countries__search-wrapper" style={themes[theme].search}>
               <FontAwesomeIcon icon={faSearch}/>
               <input type="text"  placeholder="Search for a country…" style={themes[theme].input} value={searchQuery} onChange={handleChange}/>
             </div>
           </Col>
-          <Col sm={12} md={6} className="countries-filter justify-content-end" >
-            {/* <Select options={options} placeholder="Filter By Region" onChange={filterByRegion} style={theme === 'light' ? theme.lightInput : theme.darkInput} className='darkMode'/> */}
+          <Col xs={6} sm={12} md={6} className="countries-filter justify-content-sm-end" >
             <Select options={options} placeholder="Filter By Region" onChange={filterByRegion} styles={customSelectStyles}/>
           </Col>
         </Row>
       </Col>
-      <Col md={12}>
+      <Col md={12} className="countries__container">
         <Row className='g-5 align-items-stretch'>
           {loading && <Spinner animation="border" />}
           {error && <p className="error">OOps There was an error fetching countries..</p>}
