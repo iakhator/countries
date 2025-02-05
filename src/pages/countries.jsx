@@ -6,7 +6,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Select from 'react-select'
 import useFetch from '../hooks/useFetch';
 
-import ThemeContext from '../themes/theme-context';
+import { ThemeContext } from '../themes/theme-provider';
 
 const options = [
   { value: 'africa', label: 'Africa' },
